@@ -1,0 +1,49 @@
+{
+  "name": "mx.edu.utxj.ti.dsm.awos.bienesraices-221004",
+  "version": "1.0.0",
+  "description": "Este proyecto sera desarrollado con Node, Express, Sequelize, PUG, Tailwind, Leafleft, consistira en realizar un sistema web que permitira la publicacion de propiedades para su compra venta.4",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "start-permanente": "nodemon src/index.js",
+    "server": "nodemon src/server.js",
+    "css": "postcss ./src/public/css/tailwind.css -o ./src/public/css/app.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JFosado/BienesRaices_221004.git"
+  },
+  "keywords": [
+    "AWOS",
+    "API",
+    "REST",
+    "MYSQL",
+    "BIENES",
+    "RAICES",
+    "TAILWIND"
+  ],
+  "author": "Jose Angel Fosado Animas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JFosado/BienesRaices_221004/issues"
+  },
+  "homepage": "https://github.com/JFosado/BienesRaices_221004#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "express": "^4.18.2",
+    "nodemon": "^3.0.1",
+    "postcss": "^8.4.31",
+    "postcss-cli": "^10.1.0",
+    "tailwindcss": "^3.3.3"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.3.1",
+    "express-validator": "^7.0.1",
+    "mysql2": "^3.6.2",
+    "nodemailer": "^6.9.7",
+    "pug": "^3.0.2",
+    "sequelize": "^6.33.0"
+  }
+}
