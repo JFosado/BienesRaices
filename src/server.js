@@ -5,6 +5,7 @@ import db from "./config/db.js"
 import User from "./models/User.js"
 import helmet from 'helmet'
 import dotenv from 'dotenv'
+import cookieParser from 'cookie-parser'
 dotenv.config({path:"src/.env"})
 
 const app = express();
@@ -29,8 +30,10 @@ try {
 //Habilitamos el acceso a las propiedades del DOM
 app.use(express.urlencoded({extended:false}))
 
-//Habilitar cookie parser para leer, escribir y eliminar las cookies en el navegador
-
+// Habilitar cookie parser para leer, escribir y eliminar las cookies en el navegador
+app.use(cookieParser({
+    cookie:true
+}))
 
 app.listen(process.env.SERVER_PORT, (request, response)=> {
     //Le indicamos a la instancia de express que comience a escuchar las peticiones

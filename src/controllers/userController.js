@@ -1,8 +1,9 @@
 import {request,response} from "express"
 import User from "../models/User.js"
 import {check,validationResult} from "express-validator"
-import { generateToken } from "../lib/tokens.js"
+import { generateToken,generateJwt } from "../lib/tokens.js"
 import { emailRegister } from "../lib/emails.js"
+
 
 
 const formLogin = (request,response)=> {
@@ -188,7 +189,7 @@ const authenticateUser = async(request,response ) =>{
                 page:"Login",
                 errors:[{msg:`The user associated to: ${email} was not found`}],
                 user: {
-                    email: request.body.email
+                    email
                 }
             })
         }else{
@@ -200,7 +201,7 @@ const authenticateUser = async(request,response ) =>{
                     page:"Login",
                     errors:[{msg:`The user associated to: ${email} was found but not verified`}],
                     user: {
-                        email: request.body.email
+                        email
                     }
                 })
             } else{
@@ -209,11 +210,18 @@ const authenticateUser = async(request,response ) =>{
                         page:"Login",
                         errors:[{msg:`User and password does not match`}],
                         user: {
-                            email: request.body.email
+                            email
                         }
                     })
                 } else{
-                    response.send("Welcome my friend!")
+                    console.log(`El usuario: ${email} existe y esta autentificado`)
+                    // Generar el token de acceso
+                    
+                    const token = generateJwt(userExists.id);
+                    response.cookie('_token',token,{
+                        httpOnly:true,
+                        //secure:true Esto solo se habilitara en caso de contar con un contrato https
+                    }).redirect('/home');
                 }
             }
             
@@ -224,7 +232,7 @@ const authenticateUser = async(request,response ) =>{
             page:"Login",
             errors:resultValidation.array(),
             user: {
-                email: request.body.email
+                email
             }
         })
     }
