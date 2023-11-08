@@ -1,0 +1,10 @@
+extends ../layout/index.pug
+
+block content
+
+    div.py-10
+        h1.text-center.text-4xl.my-10.font-extrabold.text-violet-800 Real 
+            span.font-normal.text-black State 
+        h2.text-center.text-3xl.font-extrabold= page
+    div.bg-white.shadow.py-8.px-4.border-lg
+        p.text-xl.text-bold.text-center.my-10.text-white.upercase.py-5(class= error ? "bg-orange" : "bg-green3")= msg

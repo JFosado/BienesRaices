@@ -30,7 +30,10 @@ const emailRegister = async(userData) => {
             margin: 0;
             padding: 0;
           }
-        
+          .container-img{
+            display: grid;
+            place-items: center;
+          }
           .container {
             width: 80%;
             margin: 0 auto;
@@ -53,9 +56,13 @@ const emailRegister = async(userData) => {
         </head>
         <body>
           <div class="container">
+          <div class="container-img">
+          <a href="https://www.flaticon.es/icono-gratis/casa_619153?k=1698356050466&log-in=google"><img src="../public/img/casa.png" height="50px" width="50px"/></a>
+          </div>
+          
             <p>Hello ${name} &#128512;</p>
             <p>Thank you for choosing us to search, sell, and buy properties. If you want to continue using our platform, please click the link below:</p>
-            <p><a href="#">Click here to activate your account</a></p>
+            <p><a href="http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}/login/confirm${token}">Click here to activate your account</a></p>
             <p>Best Regards</p>
             <p>Jose Angel Fosado Animas</p>
             <p>CEO of RealState-221004</p>
@@ -65,5 +72,6 @@ const emailRegister = async(userData) => {
         </html>`
       });
 }
+//const emailPasswordRecovery =aync(userData)=>
 
 export {emailRegister};
