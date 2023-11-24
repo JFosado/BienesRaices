@@ -1,5 +1,5 @@
 import {request,response} from "express"
-import User from "../models/User.js"
+import User from "../models/user.js"
 import {check,validationResult} from "express-validator"
 import { generateToken,generateJwt } from "../lib/tokens.js"
 import { emailRegister } from "../lib/emails.js"
@@ -221,7 +221,7 @@ const authenticateUser = async(request,response ) =>{
                     response.cookie('_token',token,{
                         httpOnly:true,
                         //secure:true Esto solo se habilitara en caso de contar con un contrato https
-                    }).redirect('/home');
+                    }).redirect('/login/home');
                 }
             }
             
@@ -240,4 +240,9 @@ const authenticateUser = async(request,response ) =>{
     return 0;
 }
 
-export {formLogin, formRegister, formPasswordRecovery,insertUser,confirmAccount, emailRegister, emailChangePassword, updatePassword, authenticateUser};
+const userHome = (request, response) => {
+    response.render('user/home',{showHeader:true});
+
+}
+
+export {formLogin, formRegister, formPasswordRecovery,insertUser,confirmAccount, emailRegister, emailChangePassword, updatePassword, authenticateUser, userHome};

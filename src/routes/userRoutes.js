@@ -1,5 +1,5 @@
 import express from 'express'
-import {formLogin, formRegister, formPasswordRecovery, insertUser, confirmAccount, emailChangePassword, updatePassword, authenticateUser} from '../controllers/userController.js';
+import {formLogin, formRegister, formPasswordRecovery, insertUser, confirmAccount, emailChangePassword, updatePassword, authenticateUser, userHome} from '../controllers/userController.js';
 
 
 const router = express.Router();
@@ -13,7 +13,7 @@ router.get("/update-password", updatePassword)
 router.post("/register", insertUser)
 router.get("/confirm/:token", confirmAccount)
 router.post("/", authenticateUser)
-
+router.get("/home", userHome)
 
 
 

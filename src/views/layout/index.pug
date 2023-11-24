@@ -6,7 +6,11 @@ html(lang="en")
         title Real State &lt; 221004 &gt; | #{page}
         link(rel="stylesheet", href="/css/app.css")
         link(rel="shortcut icon", href="../../public/img/casa.png", type="image/x-icon")
+        block styles
     body.min-h-screen.bg-blue
+        if showHeader
+            include navbar
         main(class="mx-auto container mt-10 px-2")
             
             block content
+        block scripts 

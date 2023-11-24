@@ -1,11 +1,14 @@
 import express from 'express'
 import generalRoutes from "./routes/generalRoutes.js"
 import userRoutes from "./routes/userRoutes.js"
+import propertyRoutes from './routes/propertyRoutes.js'
 import db from "./config/db.js"
-import User from "./models/User.js"
+
 import helmet from 'helmet'
 import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
+import {User, Property} from './models/relationships.js'
+
 dotenv.config({path:"src/.env"})
 
 const app = express();
@@ -34,7 +37,15 @@ app.use(express.urlencoded({extended:false}))
 app.use(cookieParser({
     cookie:true
 }))
-
+// app.use(helmet.contentSecurityPolicy({
+//     directives: {
+//       defaultSrc: ["'self'"],
+//       scriptSrc: ["'self'", 'https://unpkg.com', 'https://cdnjs.cloudflare.com', "'unsafe-eval'"],
+//       styleSrc: ["'self'", 'https://unpkg.com', 'https://cloudflare.com', 'https://cdnjs.cloudflare.com'],
+//       imgSrc: ["'self'", 'data:', 'https://unpkg.com', 'https://cloudflare.com', 'https://cdnjs.cloudflare.com', 'https://a.tile.openstreetmap.org', 'https://b.tile.openstreetmap.org', 'https://c.tile.openstreetmap.org'],
+//       connectSrc: ["'self'", 'https://tile-provider-domain.com'],
+//     },
+//   }));
 app.listen(process.env.SERVER_PORT, (request, response)=> {
     //Le indicamos a la instancia de express que comience a escuchar las peticiones
     console.log(`El servidor HTTP ha sido iniciado.. \nEl servicio esta escuchando a traves del puerto: ${process.env.SERVER_PORT}`)}) 
@@ -42,9 +53,10 @@ app.listen(process.env.SERVER_PORT, (request, response)=> {
 //Routing - Controlado las peticiones que se reciben por medio de un endpoint(URL)
 app.use('/',generalRoutes)
 app.use('/login',userRoutes)
-
+app.use('/properties', propertyRoutes)
 
 
 app.use(express.static('./src/public'))
-app.use(helmet())
+
+
 //Queda pendiente re.render() -> que pinta una interfaz grafica a traves de un motor de plantillas
