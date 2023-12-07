@@ -4,7 +4,7 @@ import db from "../config/db.js";
 const Property = db.define('tbb_properties',{
     id:{
         type:DataTypes.UUID,
-        defaultVaue: DataTypes.UUIDV4,
+        defaultValue: DataTypes.UUIDV4,
         allowNull:false,
         primaryKey: true
     }, 
@@ -34,12 +34,13 @@ const Property = db.define('tbb_properties',{
     },lat:{
         type: DataTypes.STRING,
         allowNull:false
-    }, long:{
+    }, lng:{
         type: DataTypes.STRING,
         allowNull:false
     },image:{
         type: DataTypes.STRING,
-        allowNull:false
+        allowNull:false,
+        defaultValue:"Por definir"
     },published:{
         type: DataTypes.BOOLEAN,
         allowNull:false,

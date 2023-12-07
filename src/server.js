@@ -3,7 +3,6 @@ import generalRoutes from "./routes/generalRoutes.js"
 import userRoutes from "./routes/userRoutes.js"
 import propertyRoutes from './routes/propertyRoutes.js'
 import db from "./config/db.js"
-
 import helmet from 'helmet'
 import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
@@ -37,22 +36,23 @@ app.use(express.urlencoded({extended:false}))
 app.use(cookieParser({
     cookie:true
 }))
-// app.use(helmet.contentSecurityPolicy({
-//     directives: {
-//       defaultSrc: ["'self'"],
-//       scriptSrc: ["'self'", 'https://unpkg.com', 'https://cdnjs.cloudflare.com', "'unsafe-eval'"],
-//       styleSrc: ["'self'", 'https://unpkg.com', 'https://cloudflare.com', 'https://cdnjs.cloudflare.com'],
-//       imgSrc: ["'self'", 'data:', 'https://unpkg.com', 'https://cloudflare.com', 'https://cdnjs.cloudflare.com', 'https://a.tile.openstreetmap.org', 'https://b.tile.openstreetmap.org', 'https://c.tile.openstreetmap.org'],
-//       connectSrc: ["'self'", 'https://tile-provider-domain.com'],
-//     },
-//   }));
+app.use(helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", 'https://unpkg.com', 'https://cdnjs.cloudflare.com', "'unsafe-eval'"],
+      styleSrc: ["'self'", 'https://unpkg.com', 'https://cloudflare.com', 'https://cdnjs.cloudflare.com'],
+      imgSrc: ["'self'", 'data:', 'https://unpkg.com', 'https://cloudflare.com', 'https://cdnjs.cloudflare.com', 'https://a.tile.openstreetmap.org', 'https://b.tile.openstreetmap.org', 'https://c.tile.openstreetmap.org'],
+      connectSrc: ["'self'", 'https://tile-provider-domain.com', 'https://geocode.arcgis.com'],
+    },
+  }));
+
 app.listen(process.env.SERVER_PORT, (request, response)=> {
     //Le indicamos a la instancia de express que comience a escuchar las peticiones
-    console.log(`El servidor HTTP ha sido iniciado.. \nEl servicio esta escuchando a traves del puerto: ${process.env.SERVER_PORT}`)}) 
+    console.log(`El servidor HTTP ha sido iniciado.. \nEl servicio esta escuchando a traves del puerto: ${process.env.SERVER_PORT}`)}) ;
 
 //Routing - Controlado las peticiones que se reciben por medio de un endpoint(URL)
-app.use('/',generalRoutes)
-app.use('/login',userRoutes)
+
+app.use('/',userRoutes)
 app.use('/properties', propertyRoutes)
 
 

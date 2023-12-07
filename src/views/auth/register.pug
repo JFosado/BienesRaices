@@ -4,6 +4,7 @@ extends ../layout/index.pug
 block content
     div.py-10.z-40
             if errors 
+                
                 div(id="mensaje" class="max-w-xs me-8 my-10 transition-opacity duration-500 opacity-1 -z-40 absolute")
                     each error in errors 
                         p(class="bg-orange text-white uppercase text-xs text-center p-2 mb-1 font-bold rounded-full")= error.msg

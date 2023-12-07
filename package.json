@@ -11,8 +11,8 @@
     "js": "webpack --watch",
     "dev": "concurrently \"npm run css\" \"npm run js\"",
     "css": "postcss ./src/public/css/tailwind.css -o ./src/public/css/app.css --watch",
-    "db:importData":"node ./src/lib/seeders/startSeeder.js -i",
-    "db:deleteData":"node ./src/lib/seeders/startSeeder.js -d"
+    "db:importData": "node ./src/lib/seeders/startSeeder.js -i",
+    "db:deleteData": "node ./src/lib/seeders/startSeeder.js -d"
   },
   "repository": {
     "type": "git",
@@ -48,9 +48,11 @@
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.3.1",
+    "dropzone": "^5.9.3",
     "express-validator": "^7.0.1",
     "helmet": "^7.0.0",
     "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
     "mysql2": "^3.6.2",
     "nodemailer": "^6.9.7",
     "pug": "^3.0.2",

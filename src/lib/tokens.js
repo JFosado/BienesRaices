@@ -1,23 +1,29 @@
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv'
-dotenv.config({path:"src/.env"})
+import dotenv from 'dotenv';
+import { v4 } from "uuid";
+import { UUID } from "sequelize";
+dotenv.config({
+    path: 'src/.env'
+});
 
-//Token Propio
-const generateToken=()=>Math.random().toString(32).substring(3)+Date.now().toString(32)+Math.random().toString(32).substring(3);
-//JWT
-const generateJwt =(userId) => 
+console.log(UUID)
+
+// Token propio
+const generateToken = () => Math.random().toString(32).substring(3) + Date.now().toString(32) + Math.random().toString(32).substring(3); //* numero aleatorio, fecha, numero aleatorio
+//  jwtoken
+const generateJwt = (userID) =>
     jwt.sign({
-        domain:process.env.JWT_DOMAIN,
+        domain: process.env.JWT_DOMAIN,
         signature: process.env.JWT_SIGNATURE,
         author: process.env.JWT_AUTHOR,
         year: process.env.JWT_YEAR,
-        userId
-    }, process.env.JWT_SECRET_HASH_STRING,
-    {
-        expiresIn:'1d'
+        userID,
+    }, process.env.JWT_SECRET_HASH_STRING, {
+        expiresIn: '1d'
     })
 
 
-
-
-export {generateToken,generateJwt};
+//module.exports(generateToken);
+export {
+    generateToken, generateJwt
+}
